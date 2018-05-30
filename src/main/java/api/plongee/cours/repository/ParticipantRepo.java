@@ -5,17 +5,13 @@
  */
 package api.plongee.cours.repository;
 
-import api.plongee.cours.domain.Cours;
 import api.plongee.cours.domain.Participant;
-import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.repository.CrudRepository;
 
 /**
  *
- * @author Marine
+ * @author Rigal
  */
-
-public interface CoursRepo  extends MongoRepository<Cours, String> {
-    public List<Cours> findAllByParticipants(Participant participant);
+public interface ParticipantRepo extends MongoRepository<Participant, Integer> {
+    
 }

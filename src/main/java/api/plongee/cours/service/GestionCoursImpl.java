@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import api.plongee.cours.repository.CreneauRepository;
 import api.plongee.cours.repository.CoursRepo;
+import api.plongee.cours.repository.ParticipantRepo;
 import api.plongee.membre.service.GestionMembre;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,10 @@ public class GestionCoursImpl implements GestionCours{
     
     @Autowired
     GestionMembre gestionMembre;
+    
+    @Autowired
+    ParticipantRepo participantRepo;
+    
     /**
      *
      * @param nomCours
@@ -63,7 +68,17 @@ public class GestionCoursImpl implements GestionCours{
        Participant p = new Participant(m.getIdMembre(), m.getNom(), m.getPrenom());
        c.addParticipant(p);
        coursRepo.save(c);
+       participantRepo.save(p);
        return c;
+    }
+
+    @Override
+    public List<Cours> afficherCours(Integer idMembre) throws MembreIntrouvableException, CoursIntrouvableException {
+        Participant p = participantRepo.findOne(idMembre);
+        if(p==null)throw new MembreIntrouvableException();
+        List<Cours> c = coursRepo.findAllByParticipants(p);
+        if(c==null)throw new CoursIntrouvableException();
+        return c;
     }
     
 }

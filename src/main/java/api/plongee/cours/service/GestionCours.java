@@ -10,6 +10,7 @@ import api.plongee.cours.exception.CoursIntrouvableException;
 import api.plongee.cours.exception.CoursTropRemplisException;
 import api.plongee.membre.exception.MembreIntrouvableException;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -20,5 +21,7 @@ public interface GestionCours {
     public Cours creerCours(String nomCours, Integer niveauCible, Date dateDebut, Integer duree, Integer enseignant);
     
     public Cours participerCours(String idCours, Integer idMembre) throws MembreIntrouvableException,CoursIntrouvableException, CoursTropRemplisException;
+    
+    public List<Cours> afficherCours(Integer idMembre) throws MembreIntrouvableException,CoursIntrouvableException;
     
 }

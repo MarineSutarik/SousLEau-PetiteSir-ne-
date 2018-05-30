@@ -13,8 +13,10 @@ import api.plongee.cours.service.GestionCours;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,6 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ControllerCours {
     @Autowired
     private GestionCours gestionCours;
+    
     
     /*
     Requête de test :
@@ -69,5 +72,9 @@ public class ControllerCours {
     }
            
      
-    
+    @GetMapping("/afficher/{idMembre}")
+    @ResponseBody
+    public List<Cours> afficherCours(@PathVariable("idMembre") Integer idMembre) throws MembreIntrouvableException,CoursIntrouvableException{
+        return gestionCours.afficherCours(idMembre);
+    }
 }
