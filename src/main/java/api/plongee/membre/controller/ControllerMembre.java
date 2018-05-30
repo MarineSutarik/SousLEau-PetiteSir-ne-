@@ -228,4 +228,12 @@ public class ControllerMembre {
     public void donnerCertificat(@PathVariable("id") Integer id) throws MembreIntrouvableException {         
         this.gestionMembre.donnerCertificat(id);
     }
+    
+    @GetMapping("/afficher/{id}")
+    @ResponseBody
+    public Membre afficherMembre(@PathVariable("id") Integer id) throws MembreIntrouvableException {         
+        return this.gestionMembre.afficherMembre(id);
+    }
+    
+
 }
