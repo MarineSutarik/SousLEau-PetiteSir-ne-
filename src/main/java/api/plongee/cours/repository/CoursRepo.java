@@ -8,6 +8,7 @@ package api.plongee.cours.repository;
 import api.plongee.cours.domain.Cours;
 import api.plongee.cours.domain.Participant;
 import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.CrudRepository;
 
@@ -16,6 +17,14 @@ import org.springframework.data.repository.CrudRepository;
  * @author Marine
  */
 
-public interface CoursRepo  extends MongoRepository<Cours, String> {
-    public List<Cours> findAllByParticipants(Participant participant);
+public interface CoursRepo  extends MongoRepository<Cours, String>,CoursRepoCustom{
+    
+    /**
+     *
+     * @param pidMembre
+     * @return
+     */
+    @Query("{\"participants.idMembre\":?0}")
+    public List<Cours> findAllByParticipants(Integer pidMembre);
+    
 }
