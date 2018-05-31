@@ -68,6 +68,7 @@
 	 <dependency>
 	  <groupId>org.springframework.data</groupId>
 	  <artifactId>spring-data-mongodb</artifactId>
+          <version>1.9.6.RELEASE</version>
 	  <type>jar</type>
 	 </dependency>
 	 <dependency>

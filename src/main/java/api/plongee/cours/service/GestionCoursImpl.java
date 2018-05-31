@@ -74,9 +74,8 @@ public class GestionCoursImpl implements GestionCours{
 
     @Override
     public List<Cours> afficherCours(Integer idMembre) throws MembreIntrouvableException, CoursIntrouvableException {
-        
-        List<Cours> c = coursRepo.findAllByParticipants(idMembre);
-        System.out.println(idMembre+" "+ c);
+        Participant p = participantRepo.findOne(idMembre);
+        List<Cours> c = coursRepo.findAllByParticipants(participantRepo.findOne(idMembre));
         if(c==null)throw new CoursIntrouvableException();
         return c;
     }

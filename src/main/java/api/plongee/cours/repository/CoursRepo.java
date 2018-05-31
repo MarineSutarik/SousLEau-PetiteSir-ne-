@@ -11,20 +11,22 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.rest.webmvc.RepositoryRestController;
 
 /**
  *
  * @author Marine
  */
-
-public interface CoursRepo  extends MongoRepository<Cours, String>,CoursRepoCustom{
+@RepositoryRestController
+public interface CoursRepo  extends MongoRepository<Cours, String>{
     
     /**
      *
      * @param pidMembre
      * @return
      */
-    @Query("{\"participants.idMembre\":?0}")
+    @Query(value="{\"participants.idMembre\":?0}")
     public List<Cours> findAllByParticipants(Integer pidMembre);
     
+    public List<Cours> findAllByParticipants(Participant participant);
 }
