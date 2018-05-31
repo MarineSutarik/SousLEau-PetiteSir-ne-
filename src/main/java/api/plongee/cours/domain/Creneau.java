@@ -23,8 +23,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class  Creneau implements Serializable {
     
     @Id
-    @GeneratedValue
-    private Integer idCreneau;
+    private String idCreneau;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateDebut;

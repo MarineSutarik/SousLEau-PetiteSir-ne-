@@ -14,6 +14,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * @author Marine
  */
 
-public interface CreneauRepository extends MongoRepository<Creneau, Integer> {
+public interface CreneauRepository extends MongoRepository<Creneau, String> {
     
 }

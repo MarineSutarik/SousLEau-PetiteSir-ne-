@@ -25,8 +25,9 @@ public interface CoursRepo  extends MongoRepository<Cours, String>{
      * @param pidMembre
      * @return
      */
-    @Query(value="{\"participants.idMembre\":?0}")
-    public List<Cours> findAllByParticipants(Integer pidMembre);
+   /* @Query(value="{\"participants.idMembre\":?0}")
+    public List<Cours> findAllByParticipants(Integer pidMembre);*/
     
     public List<Cours> findAllByParticipants(Participant participant);
+    public List<Cours> findAllByEnseignant(Integer enseignant);
 }

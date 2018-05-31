@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import api.plongee.cours.repository.CreneauRepository;
 import api.plongee.cours.repository.CoursRepo;
 import api.plongee.cours.repository.ParticipantRepo;
+import api.plongee.membre.domain.Enseignant;
 import api.plongee.membre.service.GestionMembre;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,9 +75,19 @@ public class GestionCoursImpl implements GestionCours{
 
     @Override
     public List<Cours> afficherCours(Integer idMembre) throws MembreIntrouvableException, CoursIntrouvableException {
-        Participant p = participantRepo.findOne(idMembre);
-        List<Cours> c = coursRepo.findAllByParticipants(participantRepo.findOne(idMembre));
+        Membre m = gestionMembre.afficherMembre(idMembre);
+        List<Cours> c  = null;
+        if ( m.getClass().equals(Enseignant.class)){
+            System.out.println("enseignant");
+            Participant p = participantRepo.findOne(idMembre);
+            c = coursRepo.findAllByParticipants(participantRepo.findOne(idMembre));
+            c.addAll(coursRepo.findAllByEnseignant(idMembre));
         if(c==null)throw new CoursIntrouvableException();
+        }else{
+        Participant p = participantRepo.findOne(idMembre);
+        c = coursRepo.findAllByParticipants(participantRepo.findOne(idMembre));
+        if(c==null)throw new CoursIntrouvableException();
+        }
         return c;
     }
     
