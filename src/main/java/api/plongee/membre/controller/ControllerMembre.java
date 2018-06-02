@@ -83,6 +83,7 @@ public class ControllerMembre {
              String login= jsonObj.getString("login");
               String password= jsonObj.getString("password");
               String dateDebutCertificat= jsonObj.getString("dateDebutCertificat");
+              String aPaye= jsonObj.getString("aPaye");
               Integer niveauExpertise= Integer.parseInt(jsonObj.getString("niveauExpertise"));
               String numLicence= jsonObj.getString("numLicence");
               String pays= jsonObj.getString("pays");
@@ -107,7 +108,8 @@ public class ControllerMembre {
         }
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
         Date d = sdf.parse(dateDebutCertificat);
-        return gestionMembre.creerMembre( nom, prenom, adresseMail, login, password, d, niveauExpertise, numLicence, pays, ville, t);
+        Date daPaye = sdf.parse(aPaye);
+        return gestionMembre.creerMembre( nom, prenom, adresseMail, login, password, d,daPaye, niveauExpertise, numLicence, pays, ville, t);
     }
     /* Pour tester la requête :
          {nom:"Toto",

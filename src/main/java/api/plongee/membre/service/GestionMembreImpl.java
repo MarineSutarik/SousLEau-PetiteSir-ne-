@@ -48,22 +48,26 @@ public class GestionMembreImpl  implements GestionMembre{
     
     
     @Override
-    public Membre creerMembre(String nom, String prenom, String adresseMail, String login, String password, Date dateDebutCertificat, Integer niveauExpertise, String numLicence, String pays, String ville, TypeMembre type) {
+    public Membre creerMembre(String nom, String prenom, String adresseMail, String login, String password, Date dateDebutCertificat, Date aPaye, Integer niveauExpertise, String numLicence, String pays, String ville, TypeMembre type) {
       Adresse a = new Adresse( pays, ville);
         a = adresse.save(a);
+        Calendar cal = Calendar.getInstance(); 
+        cal.set(1900, 1, 1, 1, 1);
+        if (aPaye == null ) aPaye = cal.getTime();
+        if (dateDebutCertificat == null ) aPaye = cal.getTime();
          Membre m = null;
         switch (type){
             case Membre :
-                 m = new Membre(nom, prenom, adresseMail, login,password, null, null,  niveauExpertise, numLicence, a);
+                 m = new Membre(nom, prenom, adresseMail, login,password, dateDebutCertificat, aPaye,  niveauExpertise, numLicence, a);
                  break;
             case Secretaire :
-                 m = new Secretaire(nom, prenom, adresseMail, login,password, null, null,  niveauExpertise, numLicence, a);
+                 m = new Secretaire(nom, prenom, adresseMail, login,password, dateDebutCertificat, aPaye,  niveauExpertise, numLicence, a);
                  break;
             case President :
-                m = new President(nom, prenom, adresseMail, login,password, null, null,  niveauExpertise, numLicence, a);
+                m = new President(nom, prenom, adresseMail, login,password, dateDebutCertificat, aPaye,  niveauExpertise, numLicence, a);
                  break;
             case Enseignant :
-                 m = new Enseignant(nom, prenom, adresseMail, login,password, null, null,  niveauExpertise, numLicence, a);
+                 m = new Enseignant(nom, prenom, adresseMail, login,password, dateDebutCertificat, aPaye,  niveauExpertise, numLicence, a);
                  break;
                  
         }
@@ -146,13 +150,13 @@ public class GestionMembreImpl  implements GestionMembre{
      k = "nombre  de cotisation prévue";
     Calendar cal =  Calendar.getInstance();
     cal.set( Calendar.getInstance().get(Calendar.YEAR), 01, 01, 0, 1);
-     v =membreRepo.countByAPayeGreaterThan(cal.getTime())+" cotisations";
+     v =membreRepo.countByAPayeLessThan(cal.getTime())+" cotisations";
     h.put(k, v);
     
     
     //nombre de cotisation réglées 
      k = "nombre de cotisation réglées";
-     v =membreRepo.countByAPayeLessThan(cal.getTime())+" cotisations";
+     v =membreRepo.countByAPayeGreaterThan(cal.getTime())+" cotisations";
     h.put(k, v);
     
     return h;
