@@ -144,13 +144,15 @@ public class GestionMembreImpl  implements GestionMembre{
     
     //nombre de cotisation prévue
      k = "nombre  de cotisation prévue";
-     v =membreRepo.getNombreCotisationsPrevues()+" cotisations";
+    Calendar cal =  Calendar.getInstance();
+    cal.set( Calendar.getInstance().get(Calendar.YEAR), 01, 01, 0, 1);
+     v =membreRepo.countByAPayeGreaterThan(cal.getTime())+" cotisations";
     h.put(k, v);
     
     
     //nombre de cotisation réglées 
      k = "nombre de cotisation réglées";
-     v =membreRepo.getNombreCotisationsRegles()+" cotisations";
+     v =membreRepo.countByAPayeLessThan(cal.getTime())+" cotisations";
     h.put(k, v);
     
     return h;

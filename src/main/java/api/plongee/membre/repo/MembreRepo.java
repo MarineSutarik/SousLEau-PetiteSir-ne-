@@ -6,6 +6,7 @@
 package api.plongee.membre.repo;
 
 import api.plongee.membre.domain.Membre;
+import java.util.Date;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -15,4 +16,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface MembreRepo extends JpaRepository<Membre, Integer>, MembreRepoCustom{
 
     public Membre findMembreByLogin(String login);
+    
+    public Integer countByAPayeGreaterThan(Date d);
+    
+    public Integer countByAPayeLessThan(Date d);
 }
