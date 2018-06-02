@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -76,5 +77,11 @@ public class ControllerCours {
     @ResponseBody
     public List<Cours> afficherCours(@PathVariable("idMembre") Integer idMembre) throws MembreIntrouvableException,CoursIntrouvableException{
         return gestionCours.afficherCours(idMembre);
+    }
+    
+        @DeleteMapping("/supprimer/{idCours}")
+    @ResponseBody
+    public void supprimer(@PathVariable("idMembre") String idCours) throws CoursIntrouvableException{
+         gestionCours.supprimerCours(idCours);
     }
 }

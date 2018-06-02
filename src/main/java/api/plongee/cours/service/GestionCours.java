@@ -24,4 +24,5 @@ public interface GestionCours {
     
     public List<Cours> afficherCours(Integer idMembre) throws MembreIntrouvableException,CoursIntrouvableException;
     
+     public void supprimerCours(String idCours) throws CoursIntrouvableException;
 }

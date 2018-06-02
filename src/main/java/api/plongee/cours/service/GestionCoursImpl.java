@@ -90,5 +90,12 @@ public class GestionCoursImpl implements GestionCours{
         }
         return c;
     }
+
+    @Override
+    public void supprimerCours(String idCours) throws CoursIntrouvableException {
+        Cours c = this.coursRepo.findOne(idCours);
+        if (c==null) throw new CoursIntrouvableException();
+        else this.coursRepo.delete(c);
+    }
     
 }

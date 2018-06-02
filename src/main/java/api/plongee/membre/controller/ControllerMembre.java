@@ -19,6 +19,7 @@ import java.util.Map;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -181,7 +182,7 @@ public class ControllerMembre {
         
     }
     
-      @PutMapping("/suppression/{id}")
+      @DeleteMapping("/suppression/{id}")
     public void supprimer( @PathVariable("id") Integer id) throws MembreIntrouvableException{
         this.gestionMembre.deleteMembre(id);
     }
@@ -236,6 +237,7 @@ public class ControllerMembre {
     public Membre afficherMembre(@PathVariable("id") Integer id) throws MembreIntrouvableException {         
         return this.gestionMembre.afficherMembre(id);
     }
+    
     
 
 }
