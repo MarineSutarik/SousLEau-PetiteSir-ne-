@@ -168,5 +168,10 @@ public class GestionCoursImpl implements GestionCours{
     public List<Piscine> afficherPiscines() {
         return piscineRepo.findAll();
     }
+
+    @Override
+    public long nombreDeCoursPositionnes() {
+        return coursRepo.count();
+    }
     
 }

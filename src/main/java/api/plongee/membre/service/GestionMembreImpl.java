@@ -5,6 +5,7 @@
  */
 package api.plongee.membre.service;
 
+import api.plongee.cours.service.GestionCours;
 import api.plongee.membre.domain.Adresse;
 import api.plongee.membre.domain.Enseignant;
 import api.plongee.membre.domain.Membre;
@@ -46,6 +47,8 @@ public class GestionMembreImpl  implements GestionMembre{
     @Autowired
     private EnseignantRepo enseignant;
     
+    @Autowired
+    private GestionCours gestionCours;
     
     @Override
     public Membre creerMembre(String nom, String prenom, String adresseMail, String login, String password, Date dateDebutCertificat, Date aPaye, Integer niveauExpertise, String numLicence, String pays, String ville, TypeMembre type) {
@@ -145,6 +148,10 @@ public class GestionMembreImpl  implements GestionMembre{
      v = enseignant.count()+" enseignants";
     h.put(k, v);
     
+     //nombre de cours positionnés
+     k = "nombre  de cours positionnés";
+     v =+ gestionCours.nombreDeCoursPositionnes()+" cours";
+    h.put(k, v);   
     
     //nombre de cotisation prévue
      k = "nombre  de cotisation prévue";

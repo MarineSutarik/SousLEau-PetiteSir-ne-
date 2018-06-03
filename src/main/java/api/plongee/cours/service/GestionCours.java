@@ -30,4 +30,6 @@ public interface GestionCours {
     public List<Piscine> recupererPiscines();
     
     public List<Piscine> afficherPiscines();
+    
+    public long nombreDeCoursPositionnes();
 }
