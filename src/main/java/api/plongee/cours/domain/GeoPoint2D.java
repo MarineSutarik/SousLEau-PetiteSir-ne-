@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author marin
  */
 @Document
-class GeoPoint2D {
+public class GeoPoint2D {
     private float latitude ;
     private float longitude;
 

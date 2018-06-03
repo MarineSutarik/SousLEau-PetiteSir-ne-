@@ -6,6 +6,7 @@
 package api.plongee.cours.controller;
 
 import api.plongee.cours.domain.Cours;
+import api.plongee.cours.domain.Piscine;
 import api.plongee.cours.exception.CoursIntrouvableException;
 import api.plongee.cours.exception.CoursTropRemplisException;
 import api.plongee.membre.exception.MembreIntrouvableException;
@@ -60,10 +61,10 @@ public class ControllerCours {
               String dateDebut= jsonObj.getString("dateDebut");
              Integer duree= Integer.parseInt(jsonObj.getString("duree"));
               Integer enseignant= Integer.parseInt(jsonObj.getString("enseignant"));
-        
+               String piscine= jsonObj.getString("piscine");
          SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
         Date d = sdf.parse(dateDebut);
-        return gestionCours.creerCours(nomCours, niveauCible, d, duree, enseignant);
+        return gestionCours.creerCours(nomCours, niveauCible, d, duree, enseignant,piscine);
     }
     
     @PutMapping("/participation/{idMembre}")
@@ -83,5 +84,11 @@ public class ControllerCours {
     @ResponseBody
     public void supprimer(@PathVariable("idMembre") String idCours) throws CoursIntrouvableException{
          gestionCours.supprimerCours(idCours);
+    }
+    
+            @GetMapping("/afficherPiscines")
+    @ResponseBody
+    public List<Piscine> afficherPiscines()  {
+         return gestionCours.afficherPiscines();
     }
 }

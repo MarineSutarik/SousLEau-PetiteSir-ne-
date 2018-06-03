@@ -30,10 +30,11 @@ public class Cours implements Serializable {
     @OneToOne
     private Creneau creneau;
     private Integer enseignant;
-    
+    @OneToOne
+    private Piscine piscine;
     private Participant[] participants ;
     
-    public Cours(String nomCours, Integer niveauCible, Creneau creneau, Integer enseignant, Participant[] participants) {
+    public Cours(String nomCours, Integer niveauCible, Creneau creneau, Integer enseignant, Participant[] participants,Piscine piscine) {
         this.nomCours = nomCours;
         this.niveauCible = niveauCible;
         this.creneau = creneau;
@@ -42,6 +43,22 @@ public class Cours implements Serializable {
     }
 
     public Cours() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Piscine getPiscine() {
+        return piscine;
+    }
+
+    public void setPiscine(Piscine piscine) {
+        this.piscine = piscine;
     }
 
     public String getIdCours() {
